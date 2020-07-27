@@ -4,32 +4,35 @@ import cv2
 import os
 #OpenCV trabaja con arreglos de numpy
 import numpy
-#Obtener el nombre de la persona que estamos capturando
+#módulo provee acceso a funciones y objetos mantenidos por del intérprete.
 import sys
-nombre = sys.argv[0]
 
-#Directorio donde se encuentra la carpeta con el nombre de la persona
+#Obtener el nombre de la persona que estamos capturando
+#nombre = sys.argv[0]
 
-#dir_faces = "att_faces/orl_faces"
+nombre = input("Introduce nombre de la carpeta")
+
+#Directorio donde se encuetra la carpeta con el nombre de la persona 
 dir_faces= "C:\\Users\\Christopher\\Desktop\\PROGRAMA PYTHON\\Sistema SRF_IOT\\att_faces\\orl_faces"
-path = os.path.join(dir_faces, "juan")##cambiar por la carpeta creada
-
+#Poner nombre de la carpeta 
+path = os.path.join(dir_faces,nombre)
 #Tamaño para reducir a miniaturas las fotografias
 size = 4
-
 #Si no hay una carpeta con el nombre ingresado entonces se crea
 if not os.path.isdir(path):
     os.mkdir(path)
 
 #cargamos la plantilla e inicializamos la webcam
-#face_cascade = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
 face_cascade = cv2.CascadeClassifier('C:\\Users\\Christopher\\Desktop\\PROGRAMA PYTHON\\Sistema SRF_IOT\\haarcascade_frontalface_default.xml')
 cap = cv2.VideoCapture(0)
 
-img_width, img_height = 112, 92
+#tamaño de la imagen
+img_width  = 112
+img_height = 92
 
 #Ciclo para tomar fotografias
-count = 0
+
+count=0
 while count < 300:
     #leemos un frame y lo guardamos
     rval, img = cap.read()
